@@ -9,13 +9,23 @@
         android:id="@+id/navigation_home"
         android:name="com.matheus.barbearia_1.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_storeDetailFragment"
+            app:destination="@id/navigation_store_detail" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_perfil_usuario"
         android:name="com.matheus.barbearia_1.ui.usuario.PerfilUsuarioFragment"
         android:label="@string/title_perfil_usuario"
         tools:layout="@layout/activityt_cadastro_usuario" />
+
+    <fragment
+        android:id="@+id/navigation_store_detail"
+        android:name="com.matheus.barbearia_1.ui.store.StoreDetailFragment"
+        android:label="@string/title_store_detail"
+        tools:layout="@layout/fragment_store_detail" />
 
     <fragment
         android:id="@+id/navigation_item"

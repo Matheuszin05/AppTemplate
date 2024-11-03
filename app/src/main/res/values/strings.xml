@@ -8,6 +8,7 @@
     <string name="title_perfil_usuario">Perfil Usuário</string>
     <string name="title_store">Store</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_store_detail">Detalhes da Loja</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
@@ -39,4 +40,6 @@
         <item>Novembro</item>
         <item>Dezembro</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

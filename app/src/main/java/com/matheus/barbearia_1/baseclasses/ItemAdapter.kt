@@ -14,6 +14,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.matheus.barbearia_1.R
+import androidx.navigation.Navigation
+import android.os.Bundle
 
 class StoreAdapter(
     private val context: Context,
@@ -33,6 +35,19 @@ class StoreAdapter(
         holder.storeEmailTextView.text = store.email
         holder.storeEnderecoTextView.text = store.endereco
         holder.storeDistanceTextView.text = getDistanceToStore(store)
+
+        holder.itemView.setOnClickListener {
+            val bundle = Bundle().apply {
+                putString("storeName", store.name)
+                putString("storeEmail", store.email)
+                putString("storeEndereco", store.endereco)
+                putString("storeImageUrl", store.imageUrl)
+
+            }
+
+            val navController = Navigation.findNavController(holder.itemView)
+            navController.navigate(R.id.action_homeFragment_to_storeDetailFragment, bundle)
+        }
 
         if (holder.storeDistanceTextView.text.isEmpty()) {
             holder.storeDistanceTextView.visibility = View.GONE

@@ -1,8 +1,10 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-kapt")
     id("com.google.gms.google-services")
 }
+
 
 android {
     namespace = "com.matheus.barbearia_1"
@@ -63,6 +65,9 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.firebase.storage.ktx)
     implementation(libs.firebase.database.ktx)
+    implementation("com.github.bumptech.glide:glide:4.13.2")
+    kapt("com.github.bumptech.glide:compiler:4.13.2")
+    implementation("androidx.fragment:fragment-ktx:1.5.0")
     implementation(libs.glide)
     implementation(libs.material)
     implementation(libs.firebase.auth.ktx)
@@ -75,6 +80,7 @@ dependencies {
     implementation (libs.firebase.messaging)
     implementation (libs.play.services.maps)
     implementation (libs.play.services.location)
+    implementation(libs.androidx.junit.ktx)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

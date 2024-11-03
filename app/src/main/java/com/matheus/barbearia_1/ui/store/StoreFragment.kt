@@ -142,7 +142,7 @@ class StoreFragment : Fragment() {
         val store = Item("", name, email, imageUrl, endereco, user?.uid.toString(),0.0,0.0, "")
 
         val database: FirebaseDatabase =
-            FirebaseDatabase.getInstance("https://apptemplate-35820-default-rtdb.firebaseio.com/")
+            FirebaseDatabase.getInstance()
         val storesReference: DatabaseReference = database.getReference("stores")
 
         // Verifica se a referência "stores" existe
