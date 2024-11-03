@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
-
+// imagem do Store detail
     <ImageView
         android:id="@+id/storeImageView"
         android:layout_width="match_parent"
