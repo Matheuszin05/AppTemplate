@@ -68,6 +68,7 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.13.2")
     kapt("com.github.bumptech.glide:compiler:4.13.2")
     implementation("androidx.fragment:fragment-ktx:1.5.0")
+    implementation ("androidx.recyclerview:recyclerview:1.3.0")
     implementation(libs.glide)
     implementation(libs.material)
     implementation(libs.firebase.auth.ktx)

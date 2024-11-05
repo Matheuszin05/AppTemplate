@@ -9,7 +9,7 @@
     android:padding="16dp"
     tools:context=".ui.login.LoginActivity">
 
-    <!-- Imagem de fundo -->
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="231dp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_tosorina_background" />
 
-    <!-- Título centralizado e ajustado -->
+
     <TextView
         android:id="@+id/text_login_title"
         android:layout_width="wrap_content"
@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Campo de email centralizado com bordas arredondadas -->
+
     <EditText
         android:id="@+id/edit_text_email"
         android:layout_width="0dp"
@@ -49,7 +49,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_login_title" />
 
-    <!-- Campo de senha centralizado com bordas arredondadas -->
+
     <EditText
         android:id="@+id/edit_text_password"
         android:layout_width="0dp"
@@ -65,7 +65,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_text_email" />
 
-    <!-- Botão de login centralizado -->
+
     <Button
         android:id="@+id/button_login"
         android:layout_width="wrap_content"
@@ -78,7 +78,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_text_password" />
 
-    <!-- Link para cadastro centralizado -->
+
     <TextView
         android:id="@+id/registerLink"
         android:layout_width="wrap_content"
@@ -93,7 +93,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_login" />
-        android:layout_marginTop="16dp"/>
+
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/btnGoogleSignIn"
