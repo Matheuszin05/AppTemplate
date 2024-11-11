@@ -34,13 +34,16 @@ class StoreAdapter(
         holder.storeNameTextView.text = store.name
         holder.storeEmailTextView.text = store.email
         holder.storeEnderecoTextView.text = store.endereco
+        holder.storeTelefoneTextView.text = store.telefone
         holder.storeDistanceTextView.text = getDistanceToStore(store)
 
         holder.itemView.setOnClickListener {
             val bundle = Bundle().apply {
+                putString("storeId", store.storeId)
                 putString("storeName", store.name)
                 putString("storeEmail", store.email)
                 putString("storeEndereco", store.endereco)
+                putString("storeTelefone", store.telefone)
                 putString("storeImageUrl", store.imageUrl)
 
             }
@@ -58,10 +61,10 @@ class StoreAdapter(
         // Ajustar a visibilidade do ícone do mapa
         if (store.endereco.isEmpty()) {
             holder.mapIconImageView.visibility = View.GONE
-            holder.wazeIconImageView.visibility = View.GONE
+            //holder.wazeIconImageView.visibility = View.GONE
         } else {
             holder.mapIconImageView.visibility = View.VISIBLE
-            holder.wazeIconImageView.visibility = View.VISIBLE
+           // holder.wazeIconImageView.visibility = View.VISIBLE
         }
         holder.mapIconImageView.setOnClickListener {
             val endereco = holder.storeEnderecoTextView.text.toString()
@@ -73,7 +76,7 @@ class StoreAdapter(
             }
         }
 
-        holder.wazeIconImageView.setOnClickListener {
+        /*holder.wazeIconImageView.setOnClickListener {
             val endereco = holder.storeEnderecoTextView.text.toString()
             val wazeUri = Uri.parse("https://waze.com/ul?q=${Uri.encode(endereco)}")
             val wazeIntent = Intent(Intent.ACTION_VIEW, wazeUri)
@@ -83,11 +86,13 @@ class StoreAdapter(
             } else {
                 Toast.makeText(it.context, "Waze não está instalado", Toast.LENGTH_SHORT).show()
             }
-        }
+        }*/
 
         Glide.with(holder.storeImageView.context)
             .load(store.imageUrl)
+            .circleCrop()
             .into(holder.storeImageView)
+
     }
 
 
@@ -122,9 +127,10 @@ class StoreAdapter(
         val storeImageView: ImageView = itemView.findViewById(R.id.storeImageView)
         val storeNameTextView: TextView = itemView.findViewById(R.id.storeNameTextView)
         val storeEnderecoTextView: TextView = itemView.findViewById(R.id.storeEnderecoTextView)
+        val storeTelefoneTextView: TextView = itemView.findViewById(R.id.storeTelefoneTextView)
         val storeDistanceTextView: TextView = itemView.findViewById(R.id.storeDistanceTextView)
         val storeEmailTextView: TextView = itemView.findViewById(R.id.storeEmailTextView)
         val mapIconImageView: ImageView = itemView.findViewById(R.id.mapIconImageView)
-        val wazeIconImageView: ImageView = itemView.findViewById(R.id.wazeIconImageView)
+        //val wazeIconImageView: ImageView = itemView.findViewById(R.id.wazeIconImageView)
     }
 }

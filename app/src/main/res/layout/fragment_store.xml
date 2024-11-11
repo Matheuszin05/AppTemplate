@@ -65,7 +65,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_text_store_name" />
 
-
     <EditText
         android:id="@+id/edit_text_store_endereco"
         android:layout_width="350dp"
@@ -78,6 +77,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_text_store_email" />
 
+    <!-- Campo para telefone -->
+    <EditText
+        android:id="@+id/edit_text_store_phone"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_input_background"
+        android:hint="Telefone"
+        android:inputType="phone"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_text_store_endereco" />
+
+    <!-- Campo para CNPJ -->
+    <EditText
+        android:id="@+id/edit_text_store_cnpj"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_input_background"
+        android:hint="CNPJ"
+        android:inputType="text"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_text_store_phone" />
 
     <Button
         android:id="@+id/button_register_store"
@@ -87,5 +113,5 @@
         android:text="Cadastrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_text_store_endereco" />
+        app:layout_constraintTop_toBottomOf="@id/edit_text_store_cnpj" />
 </androidx.constraintlayout.widget.ConstraintLayout>

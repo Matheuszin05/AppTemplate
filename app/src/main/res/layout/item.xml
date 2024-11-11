@@ -10,14 +10,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
-        <ImageView
+    <ImageView
             android:id="@+id/storeImageView"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:layout_gravity="start"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/rounded_image"
+            android:clipToOutline="true"
+            android:layout_gravity="center" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,6 +59,13 @@
                 android:layout_marginVertical="@dimen/item_vertical_margin">
 
                 <TextView
+                    android:id="@+id/storeTelefoneTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
                     android:id="@+id/storeEnderecoTextView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -68,14 +78,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_gravity="end|bottom"
-                    android:src="@android:drawable/ic_dialog_map" />
+                    android:src="@drawable/ic_map_custom" />
 
-                <ImageView
-                    android:id="@+id/wazeIconImageView"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="end|bottom"
-                    android:src="@android:drawable/arrow_up_float" />
 
             </LinearLayout>
 

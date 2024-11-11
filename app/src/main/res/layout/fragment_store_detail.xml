@@ -4,13 +4,12 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-
     <ImageView
         android:id="@+id/storeImageView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:scaleType="centerCrop" />
-
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="16dp" />
 
     <TextView
         android:id="@+id/storeNameTextView"
@@ -18,48 +17,46 @@
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:paddingTop="8dp" />
-
+        android:paddingTop="8dp"
+        android:layout_marginBottom="8dp" />
 
     <TextView
         android:id="@+id/storeAddressTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:paddingTop="4dp" />
+        android:layout_marginBottom="8dp" />
 
+    <TextView
+        android:id="@+id/storeTelefoneTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp" />
 
     <TextView
         android:id="@+id/storeDescriptionTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:paddingTop="8dp"
-        android:text="Barbearia na ponta do bigode muito famosa pelos seus cortes de cabelos e barbas" />
+        android:layout_marginBottom="16dp" />
 
 
-    <LinearLayout
+    <RatingBar
+        android:id="@+id/storeRatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingTop="16dp">
+        android:numStars="5"
+        android:stepSize="0.5"
+        android:isIndicator="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp" />
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Avaliação:"
-            android:textSize="18sp"
-            android:paddingEnd="8dp" />
-
-
-        <RatingBar
-            android:id="@+id/storeRatingBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:numStars="5"
-            android:stepSize="1.0" />
-    </LinearLayout>
+    <!-- Calendário -->
+    <CalendarView
+        android:id="@+id/storeCalendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" />
 
 </LinearLayout>

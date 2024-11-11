@@ -128,6 +128,8 @@ class HomeFragment : Fragment() {
                 val storeList = mutableListOf<Item>()
                 for (storeSnapshot in snapshot.children) {
                     val store = storeSnapshot.getValue(Item::class.java)
+                    if (store?.status == "Pendente" )
+                        continue
                     store?.let { storeList.add(it) }
                 }
                 storeAdapter = StoreAdapter(requireContext(), storeList, userLocation)
