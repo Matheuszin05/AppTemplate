@@ -13,5 +13,8 @@ data class Item(
     var distancia: String = "",
     var storeId: String = "",
     var status: String = "",
+    var dataAgendamento: String = "",
+    var horaAgendamento: String = "",
+    val rating: Float = 0.0f
 )
 

@@ -32,7 +32,7 @@ class StoreAdapter(
     override fun onBindViewHolder(holder: StoreViewHolder, position: Int) {
         val store = storeList[position]
         holder.storeNameTextView.text = store.name
-        holder.storeEmailTextView.text = store.email
+        //holder.storeEmailTextView.text = store.email
         holder.storeEnderecoTextView.text = store.endereco
         holder.storeTelefoneTextView.text = store.telefone
         holder.storeDistanceTextView.text = getDistanceToStore(store)
@@ -129,7 +129,7 @@ class StoreAdapter(
         val storeEnderecoTextView: TextView = itemView.findViewById(R.id.storeEnderecoTextView)
         val storeTelefoneTextView: TextView = itemView.findViewById(R.id.storeTelefoneTextView)
         val storeDistanceTextView: TextView = itemView.findViewById(R.id.storeDistanceTextView)
-        val storeEmailTextView: TextView = itemView.findViewById(R.id.storeEmailTextView)
+        //val storeEmailTextView: TextView = itemView.findViewById(R.id.storeEmailTextView)
         val mapIconImageView: ImageView = itemView.findViewById(R.id.mapIconImageView)
         //val wazeIconImageView: ImageView = itemView.findViewById(R.id.wazeIconImageView)
     }

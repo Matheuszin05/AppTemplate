@@ -66,6 +66,7 @@ dependencies {
     implementation(libs.firebase.storage.ktx)
     implementation(libs.firebase.database.ktx)
     implementation("com.github.bumptech.glide:glide:4.13.2")
+    implementation(libs.androidx.activity)
     kapt("com.github.bumptech.glide:compiler:4.13.2")
     implementation("androidx.fragment:fragment-ktx:1.5.0")
     implementation ("androidx.recyclerview:recyclerview:1.3.0")
