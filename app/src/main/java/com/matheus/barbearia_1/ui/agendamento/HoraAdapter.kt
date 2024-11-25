@@ -14,6 +14,13 @@ class HoraAdapter(
 ) : RecyclerView.Adapter<HoraAdapter.HoraViewHolder>() {
 
     private var selectedPosition = RecyclerView.NO_POSITION
+    private var horariosIndisponiveis: Set<String> = emptySet() // Horários indisponíveis
+
+    // Método para atualizar a lista de horários indisponíveis
+    fun setHorariosIndisponiveis(indisponiveis: Set<String>) {
+        horariosIndisponiveis = indisponiveis
+        notifyDataSetChanged()  // Atualiza a lista para refletir os horários indisponíveis
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HoraViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -25,19 +32,26 @@ class HoraAdapter(
         val horario = horarios[position]
         holder.horaButton.text = horario
 
-        // Configuração da cor de seleção
-        holder.horaButton.setBackgroundColor(
-            if (position == selectedPosition) Color.LTGRAY else Color.TRANSPARENT
-        )
+        // Se o horário estiver indisponível, desabilitar o botão e alterar a cor
+        if (horariosIndisponiveis.contains(horario)) {
+            holder.horaButton.isEnabled = false
+            holder.horaButton.setBackgroundColor(Color.GRAY)  // Cor para horários indisponíveis
+        } else {
+            holder.horaButton.isEnabled = true
+            holder.horaButton.setBackgroundColor(
+                if (position == selectedPosition) Color.LTGRAY else Color.TRANSPARENT
+            )
 
-        holder.horaButton.setOnClickListener {
-            val previousPosition = selectedPosition
-            selectedPosition = holder.adapterPosition
+            holder.horaButton.setOnClickListener {
+                val previousPosition = selectedPosition
+                selectedPosition = holder.adapterPosition
 
-            notifyItemChanged(previousPosition)
-            notifyItemChanged(selectedPosition)
+                // Notificar as mudanças de posição para indicar seleção
+                notifyItemChanged(previousPosition)
+                notifyItemChanged(selectedPosition)
 
-            onTimeSelected(horario)
+                onTimeSelected(horario)
+            }
         }
     }
 

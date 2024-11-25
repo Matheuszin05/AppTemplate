@@ -84,7 +84,7 @@
                 android:id="@+id/storeTelefoneTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="(00)1234-5678"
+                android:text="(00)0000-0000"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -123,6 +123,54 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <!-- Comments Header -->
+
+
+    <!-- Store Description Text -->
+    <TextView
+        android:id="@+id/storeDescriptionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Descrição da loja"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/storeAddressTextView" />
+
+    <!-- Buttons Layout (Horizontal) -->
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/storeDescriptionTextView">
+
+        <!-- Scheduling Button -->
+        <Button
+            android:id="@+id/Agendabutton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/black"
+            android:text="Agendamento"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+        <!-- Rating Button -->
+        <Button
+            android:id="@+id/AvaliacaoActivity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/black"
+            android:text="Avaliar Serviço"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/commentsHeader"
         android:layout_width="wrap_content"
@@ -131,31 +179,17 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/storeAddressTextView"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
-    <!-- Store Description Text -->
-    <TextView
-        android:id="@+id/storeDescriptionTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Descrição da loja"
-        app:layout_constraintTop_toBottomOf="@id/commentsHeader"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <!-- Scheduling Button -->
-    <Button
-        android:id="@+id/Agendabutton"
-        android:layout_width="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/commentsRecyclerView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/black"
-        android:text="Agendamento"
-        android:textColor="@android:color/white"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/storeDescriptionTextView" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/commentsHeader" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

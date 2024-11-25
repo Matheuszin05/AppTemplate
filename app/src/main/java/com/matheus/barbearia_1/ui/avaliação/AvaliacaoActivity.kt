@@ -6,35 +6,85 @@ import android.widget.EditText
 import android.widget.RatingBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.matheus.barbearia_1.R
 
 class AvaliacaoActivity : AppCompatActivity() {
 
-    private lateinit var ratingBar: RatingBar
+    private lateinit var ratingBarService: RatingBar
+    private lateinit var ratingBarEmployee: RatingBar
+    private lateinit var comentarioEditText: EditText
     private lateinit var submitButton: Button
-    private lateinit var commentEditText: EditText
+    private lateinit var storeId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_avaliacao)
 
-        // Corrigindo a referência do RatingBar
-        ratingBar = findViewById(R.id.ratingBarService) // ID correto
+        // Inicializando views
+        ratingBarService = findViewById(R.id.ratingBarService)
+        ratingBarEmployee = findViewById(R.id.ratingBarEmployee)
+        comentarioEditText = findViewById(R.id.editTextComment)
         submitButton = findViewById(R.id.buttonSubmitRating)
-        commentEditText = findViewById(R.id.editTextComment)
 
-        // Configurando a ação do botão de envio
+        // Obtendo o storeId da intenção
+        storeId = intent.getStringExtra("storeId") ?: ""
+
+        // Configurando o botão de envio
         submitButton.setOnClickListener {
-            val rating = ratingBar.rating // Captura a avaliação
-            val comment = commentEditText.text.toString() // Captura o comentário
+            val serviceRating = ratingBarService.rating
+            val employeeRating = ratingBarEmployee.rating
+            val comentario = comentarioEditText.text.toString().trim()
 
-            if (comment.isNotBlank()) {
-                // Exibe a avaliação e o comentário
-                Toast.makeText(this, "Sua avaliação: $rating estrelas\nComentário: $comment", Toast.LENGTH_LONG).show()
-            } else {
-                // Informa ao usuário para inserir um comentário
-                Toast.makeText(this, "Por favor, insira um comentário.", Toast.LENGTH_SHORT).show()
+            if (validateFields(serviceRating, employeeRating, comentario)) {
+                submitButton.isEnabled = false // Evitar múltiplos cliques
+
+                val currentUser = FirebaseAuth.getInstance().currentUser
+                if (currentUser != null) {
+                    val userId = currentUser.uid
+                    val userName = currentUser.displayName ?: "Usuário Anônimo"
+                    val userEmail = currentUser.email ?: "Email não disponível"
+
+                    val database = FirebaseDatabase.getInstance().getReference("reviews").child(storeId)
+                    val review = mapOf(
+                        "serviceRating" to serviceRating,
+                        "employeeRating" to employeeRating,
+                        "comentario" to comentario,
+                        "userId" to userId,
+                        "userName" to userName,
+                        "userEmail" to userEmail
+                    )
+
+                    database.push().setValue(review).addOnCompleteListener {
+                        submitButton.isEnabled = true // Reativar botão
+
+                        if (it.isSuccessful) {
+                            Toast.makeText(this, "Avaliação enviada com sucesso!", Toast.LENGTH_SHORT).show()
+                            finish() // Finaliza a atividade
+                        } else {
+                            Toast.makeText(this, "Erro ao enviar avaliação.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                } else {
+                    Toast.makeText(this, "Usuário não autenticado.", Toast.LENGTH_SHORT).show()
+                    submitButton.isEnabled = true // Reativar botão
+                }
             }
         }
+    }
+
+    private fun validateFields(serviceRating: Float, employeeRating: Float, comentario: String): Boolean {
+        if (serviceRating == 0f && employeeRating == 0f) {
+            Toast.makeText(this, "Por favor, insira uma avaliação.", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (comentario.isEmpty()) {
+            Toast.makeText(this, "Por favor, adicione um comentário.", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        return true
     }
 }
