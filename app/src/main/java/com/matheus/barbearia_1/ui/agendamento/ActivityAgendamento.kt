@@ -132,6 +132,7 @@ class ActivityAgendamento : AppCompatActivity() {
         val day = dateParts[0]
         val month = dateParts[1]
         val year = dateParts[2]
+        val adapter = (findViewById<RecyclerView>(R.id.timeRecyclerView).adapter as HoraAdapter).resetHorariosIndisponiveis()
 
         agendamentosRef.child(storeId).child(year).child(month).child(day).get().addOnSuccessListener { snapshot ->
             if (snapshot.exists()) {

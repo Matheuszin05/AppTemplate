@@ -1,0 +1,5 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#3700B3"/> <!-- Cor de fundo mais escura quando pressionado -->
+    <corners android:radius="16dp"/> <!-- Bordas arredondadas -->
+    <stroke android:color="#6200EE" android:width="2dp"/> <!-- Borda mais clara quando pressionado -->
+</shape>

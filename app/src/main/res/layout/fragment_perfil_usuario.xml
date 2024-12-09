@@ -8,7 +8,7 @@
     android:padding="16dp"
     tools:context=".ui.usuario.PerfilUsuarioFragment">
 
-
+    <!-- Foto de Perfil -->
     <ImageView
         android:id="@+id/userProfileImageView"
         android:layout_width="100dp"
@@ -22,6 +22,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Nome -->
     <EditText
         android:id="@+id/registerNameEditText"
         android:layout_width="0dp"
@@ -35,6 +36,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userProfileImageView" />
 
+    <!-- Email -->
     <EditText
         android:id="@+id/registerEmailEditText"
         android:layout_width="0dp"
@@ -49,13 +51,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/registerNameEditText" />
 
+    <!-- Senha Atual -->
     <EditText
-        android:id="@+id/registerPasswordEditText"
+        android:id="@+id/currentPasswordEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@drawable/rounded_input_background"
-        android:hint="Senha"
+        android:hint="Senha Atual"
         android:inputType="textPassword"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,13 +66,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/registerEmailEditText" />
 
+    <!-- Nova Senha -->
+    <EditText
+        android:id="@+id/registerPasswordEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/rounded_input_background"
+        android:hint="Nova Senha"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/currentPasswordEditText" />
+
+    <!-- Confirmar Nova Senha -->
     <EditText
         android:id="@+id/registerConfirmPasswordEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@drawable/rounded_input_background"
-        android:hint="Confirmar Senha"
+        android:hint="Confirmar Nova Senha"
         android:inputType="textPassword"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -77,6 +96,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/registerPasswordEditText" />
 
+    <!-- Botão Atualizar -->
     <Button
         android:id="@+id/registerButton"
         android:layout_width="0dp"
@@ -88,6 +108,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/registerConfirmPasswordEditText" />
 
+    <!-- Botão Sair -->
     <Button
         android:id="@+id/sairButton"
         android:layout_width="0dp"

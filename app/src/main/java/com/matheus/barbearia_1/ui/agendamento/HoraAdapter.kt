@@ -16,6 +16,10 @@ class HoraAdapter(
     private var selectedPosition = RecyclerView.NO_POSITION
     private var horariosIndisponiveis: Set<String> = emptySet() // Horários indisponíveis
 
+    fun resetHorariosIndisponiveis (){
+        horariosIndisponiveis = emptySet()
+    }
+
     // Método para atualizar a lista de horários indisponíveis
     fun setHorariosIndisponiveis(indisponiveis: Set<String>) {
         horariosIndisponiveis = indisponiveis
@@ -32,30 +36,38 @@ class HoraAdapter(
         val horario = horarios[position]
         holder.horaButton.text = horario
 
-        // Se o horário estiver indisponível, desabilitar o botão e alterar a cor
-        if (horariosIndisponiveis.contains(horario)) {
-            holder.horaButton.isEnabled = false
-            holder.horaButton.setBackgroundColor(Color.GRAY)  // Cor para horários indisponíveis
-        } else {
-            holder.horaButton.isEnabled = true
-            holder.horaButton.setBackgroundColor(
-                if (position == selectedPosition) Color.LTGRAY else Color.TRANSPARENT
-            )
+        // Atualiza a aparência do botão com base no horário e sua disponibilidade
+        updateButtonAppearance(holder, horario, position)
 
-            holder.horaButton.setOnClickListener {
-                val previousPosition = selectedPosition
-                selectedPosition = holder.adapterPosition
+        holder.horaButton.setOnClickListener {
+            val previousPosition = selectedPosition
+            selectedPosition = holder.adapterPosition
 
-                // Notificar as mudanças de posição para indicar seleção
-                notifyItemChanged(previousPosition)
-                notifyItemChanged(selectedPosition)
+            // Notificar as mudanças de posição para indicar seleção
+            notifyItemChanged(previousPosition)
+            notifyItemChanged(selectedPosition)
 
-                onTimeSelected(horario)
-            }
+            onTimeSelected(horario)
         }
     }
 
     override fun getItemCount(): Int = horarios.size
+
+    private fun updateButtonAppearance(holder: HoraViewHolder, horario: String, position: Int) {
+        // Verifica se o horário está na lista de horários indisponíveis
+        if (horariosIndisponiveis.contains(horario)) {
+            holder.horaButton.isEnabled = false
+            holder.horaButton.setBackgroundResource(R.drawable.button_hora_selector) // Usando o mesmo fundo
+            holder.horaButton.setTextColor(Color.DKGRAY)  // Texto cinza escuro para indicar indisponibilidade
+        } else {
+            // Se o horário estiver disponível, ajusta o fundo e a cor do texto
+            holder.horaButton.isEnabled = true
+            holder.horaButton.setBackgroundResource(R.drawable.button_hora_selector) // Fundo do botão
+            holder.horaButton.setTextColor(
+                if (position == selectedPosition) Color.BLACK else Color.WHITE // Cor do texto para selecionado
+            )
+        }
+    }
 
     inner class HoraViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val horaButton: Button = itemView.findViewById(R.id.horaButton)

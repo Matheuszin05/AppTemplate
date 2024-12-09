@@ -33,8 +33,6 @@ class PerfilUsuarioFragment : Fragment() {
     private lateinit var database: DatabaseReference
     private lateinit var auth: FirebaseAuth
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -59,15 +57,26 @@ class PerfilUsuarioFragment : Fragment() {
         val user = MainActivity.usuarioLogado
 
         if (user != null) {
-            sairButton.visibility = View.VISIBLE
-            registerPasswordEditText.visibility = View.GONE
-            registerConfirmPasswordEditText.visibility = View.GONE
+            // Se o usuário está logado, verifica o provedor
+            val isGoogleUser = isGoogleLogin(user)
             registerEmailEditText.isEnabled = false
-        }
+            registerEmailEditText.isFocusable = false
+            registerEmailEditText.isClickable = false
 
-        user?.let {
+            // Desabilita os campos de senha caso seja um usuário do Google
+            if (isGoogleUser) {
+                registerPasswordEditText.isEnabled = false // A senha não pode ser alterada
+                registerConfirmPasswordEditText.isEnabled = false // A confirmação de senha também não
+            } else {
+                registerPasswordEditText.isEnabled = true // Permite alterar a senha para usuários de e-mail/senha
+                registerConfirmPasswordEditText.isEnabled = true // Permite alterar a confirmação de senha
+            }
+
             // Exibe a foto do perfil usando a biblioteca Glide
-            Glide.with(this).load(it.photoUrl).into(userProfileImageView)
+            Glide.with(this).load(user.photoUrl).into(userProfileImageView)
+
+            // Exibe o botão de logout
+            sairButton.visibility = View.VISIBLE
         }
 
         registerButton.setOnClickListener {
@@ -98,12 +107,9 @@ class PerfilUsuarioFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Exibe os dados do usuário logado, se disponível
-
-        // Acessar currentUser
         val user = MainActivity.usuarioLogado
-
         var user_firebase = MainActivity.usuarioLogado
-        if(user_firebase != null){
+        if (user_firebase != null) {
             registerNameEditText.setText(user_firebase.displayName)
             registerEmailEditText.setText(user_firebase.email)
         }
@@ -111,13 +117,18 @@ class PerfilUsuarioFragment : Fragment() {
 
     private fun updateUser() {
         val name = registerNameEditText.text.toString().trim()
+        val password = registerPasswordEditText.text.toString().trim()
+        val confirmPassword = registerConfirmPasswordEditText.text.toString().trim()
 
         // Acessar currentUser
         val user = MainActivity.usuarioLogado
 
-        // Verifica se o usuário atual já está definido
         if (user != null) {
-            // Se o usuário já existe, atualiza os dados
+            // Se o usuário está logado, atualiza os dados
+            if (password.isNotEmpty() && password == confirmPassword) {
+                // Se a senha foi alterada, atualiza a senha
+                updatePassword(user, password)
+            }
             updateProfile(user, name)
         } else {
             Toast.makeText(context, "Não foi possível encontrar o usuário logado", Toast.LENGTH_SHORT).show()
@@ -132,18 +143,35 @@ class PerfilUsuarioFragment : Fragment() {
         user?.updateProfile(profileUpdates)
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(context, "Nome do usuario alterado com sucesso.",
+                    Toast.makeText(context, "Nome do usuário alterado com sucesso.",
                         Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(context, "Não foi possivel alterar o nome do usuario.",
+                    Toast.makeText(context, "Não foi possível alterar o nome do usuário.",
                         Toast.LENGTH_SHORT).show()
                 }
             }
+    }
+
+    private fun updatePassword(user: FirebaseUser, newPassword: String) {
+        user.updatePassword(newPassword)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(context, "Senha alterada com sucesso.",
+                        Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(context, "Erro ao alterar a senha.",
+                        Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
+    private fun isGoogleLogin(user: FirebaseUser): Boolean {
+        // Verifica se o provedor de autenticação do usuário é o Google
+        return user.providerData.any { it.providerId == "google.com" }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }

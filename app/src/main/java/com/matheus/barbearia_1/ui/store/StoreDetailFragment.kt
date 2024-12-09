@@ -38,6 +38,7 @@ class StoreDetailFragment : Fragment() {
     private lateinit var avaliacaoButton: Button
     private lateinit var database: DatabaseReference
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

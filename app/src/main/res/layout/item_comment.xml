@@ -3,32 +3,85 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:padding="8dp"
     android:background="@drawable/comment_item_background"
     android:layout_marginBottom="8dp">
 
-    <!-- Nome do Usuário -->
-    <TextView
-        android:id="@+id/commentUserTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Usuário"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:layout_marginBottom="4dp" />
+    <!-- Foto do Usuário -->
+    <ImageView
+        android:id="@+id/userProfileImageView"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="centerCrop"
+        android:contentDescription="Foto do Usuário"
+        android:background="@drawable/circle_background" />
 
-    <!-- Comentário -->
-    <TextView
-        android:id="@+id/commentMessageTextView"
-        android:layout_width="match_parent"
+    <!-- Área de Detalhes do Comentário e Rating -->
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Mensagem"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        android:lineSpacingExtra="4dp"
-        android:maxLines="5"
-        android:ellipsize="end" />
+        android:orientation="horizontal"
+        android:layout_weight="1">
 
+        <!-- Área do Comentário -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <!-- Nome do Usuário -->
+            <TextView
+                android:id="@+id/commentUserTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nome do Usuário"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="4dp" />
+
+            <!-- Texto do Comentário -->
+            <TextView
+                android:id="@+id/commentMessageTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Aqui está o comentário do usuário"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:lineSpacingExtra="4dp"
+                android:maxLines="5"
+                android:ellipsize="end" />
+
+
+
+        </LinearLayout>
+
+        <!-- LinearLayout para Rating ou outro item ao lado do comentário -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="8dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/starIconImageView"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_icon_star"
+                />
+
+            <!-- TextView para exibir a classificação -->
+            <TextView
+                android:id="@+id/storeRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

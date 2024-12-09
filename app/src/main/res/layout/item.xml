@@ -49,6 +49,12 @@
                     android:maxLines="1"
                     android:ellipsize="end" />
 
+                <ImageView
+                    android:id="@+id/starIconImageView"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_icon_star" />
+
                 <TextView
                     android:id="@+id/storeRatingBar"
                     android:layout_width="wrap_content"
@@ -79,10 +85,9 @@
 
                 <ImageView
                     android:id="@+id/mapIconImageView"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_icon_map_google"
-                    />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_map_custom" />
             </LinearLayout>
 
             <!-- Store Distance and Phone -->

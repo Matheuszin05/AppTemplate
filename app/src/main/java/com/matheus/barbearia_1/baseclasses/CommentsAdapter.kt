@@ -3,9 +3,10 @@ package com.matheus.barbearia_1.baseclasses
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RatingBar
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.matheus.barbearia_1.R
 
 // Adapter para exibir comentários em um RecyclerView
@@ -16,10 +17,10 @@ class CommentsAdapter : RecyclerView.Adapter<CommentsAdapter.CommentViewHolder>(
 
     // ViewHolder para o comentário
     class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        //val userNameText: TextView = itemView.findViewById(R.id.userNameTextView)
         val comentarioText: TextView = itemView.findViewById(R.id.commentMessageTextView)
-       // val serviceRatingBar: RatingBar = itemView.findViewById(R.id.serviceRatingBar)
-      //  val employeeRatingBar: RatingBar = itemView.findViewById(R.id.employeeRatingBar)
+        val userProfileImage: ImageView = itemView.findViewById(R.id.userProfileImageView)
+        val userNameText: TextView = itemView.findViewById(R.id.commentUserTextView)
+        val storeRatingBar: TextView = itemView.findViewById(R.id.storeRatingBar)
     }
 
     // Cria o ViewHolder e o associa à view de item
@@ -33,10 +34,22 @@ class CommentsAdapter : RecyclerView.Adapter<CommentsAdapter.CommentViewHolder>(
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {
         val currentComment = commentsList[position]
 
-       // holder.userNameText.text = currentComment.userName
+        // Define o texto do comentário
         holder.comentarioText.text = currentComment.comentario
-       // holder.serviceRatingBar.rating = currentComment.serviceRating
-      //  holder.employeeRatingBar.rating = currentComment.employeeRating
+
+        // Define o nome do usuário
+        holder.userNameText.text = currentComment.userName
+
+        // Carrega a imagem do perfil usando Glide
+        Glide.with(holder.userProfileImage.context)
+            .load(currentComment.imageUrl)
+            .circleCrop()// URL da imagem do perfil
+            .into(holder.userProfileImage)
+
+        val serviceRating = currentComment.serviceRating  // Assume que serviceRating é uma propriedade do Comment
+
+        // Aqui estamos formatando a avaliação como uma String, você pode ajustá-la conforme necessário
+        holder.storeRatingBar.text = "$serviceRating"
     }
 
     // Retorna o número de comentários na lista
